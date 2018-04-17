@@ -1,0 +1,11 @@
+for pid in $(ps -e -f | grep $1 | grep -v grep | grep -v $0 | awk '{print $2}')
+do
+    kill $pid
+done
+
+if [ "$pid" == "" ];
+then
+    echo "Process $1 is not running!"
+else
+    echo "Process $1 killed!"
+fi
