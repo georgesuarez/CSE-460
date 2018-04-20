@@ -12,12 +12,11 @@ void func(int sig)
 
 int main()
 {
-    (void)signal(SIGINT, func); //catch terminal interrupts
+    struct sigaction act;
 
-    for (int i = 0; i < 20; ++i)
-    {
-        cout << "CSUSB CS 460 lab on signals" << endl;
-        sleep(1);
-    }
+    (void)sigaction(SIGINT, &act, NULL); //catch terminal interrupts
+
+    while ( 1 );
+
     return 0;
 }

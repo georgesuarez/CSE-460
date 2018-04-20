@@ -2,4 +2,11 @@ chain_processes
 fan_processes
 test1
 .DS_Store
+test_signal
+test_wait
+test_exec
+test_alarm
+test_fork
+.vscode
+
 

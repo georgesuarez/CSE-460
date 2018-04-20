@@ -1,4 +1,3 @@
-
 //test_wait.cpp
 #include <sys/types.h>
 #include <sys/wait.h>
@@ -12,6 +11,7 @@ using namespace std;
 int main()
 {
     pid_t pid; //process id
+    pid_t grandparent = getpid();
     char *message;
     int n;
     int exit_code;
@@ -24,6 +24,18 @@ int main()
         cout << "Fork failure!\n";
         return 1;
     case 0:
+        pid = fork();
+        switch (pid)
+        {
+        case -1:
+            cout << "Fork failure\n";
+            return 1;
+        case 0:
+            cout << "This is the grandchild PID = " << getpid() << "\nThis is the parent PID = " << getppid() << "\nThis is the grandparent PID = " << grandparent << endl;
+            break;
+        default:
+            break;
+        }
         message = "This is the child\n";
         n = 5;
         exit_code = 9;
